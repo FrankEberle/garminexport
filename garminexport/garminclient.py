@@ -6,6 +6,7 @@ parts of the Garmin Connect REST API.
 import json
 import logging
 import os
+import io
 import re
 import requests
 from io import BytesIO
@@ -374,7 +375,7 @@ class GarminClient(object):
         :rtype: int
         """
 
-        if isinstance(file, basestring):
+        if not isinstance(file, io.IOBase):
             file = open(file, "rb")
 
         # guess file type if unspecified
